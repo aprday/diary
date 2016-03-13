@@ -1,0 +1,3 @@
+[submodule "diary"]
+	path = diary
+	url = git@github.com:/my-tech-diary.git
