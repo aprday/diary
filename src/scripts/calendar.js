@@ -1,6 +1,7 @@
 var moment = require('moment');
 var Pikaday = require('./plugins/pikaday');
 var xhr = require('./plugins/promiseXHR');
+var Promise = require('./plugins/promise');
 var config = require('../../config'),
     http_url = config.http_url;
 

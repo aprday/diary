@@ -1,3 +1,4 @@
+var Promise = require('./promise');
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -18,7 +19,9 @@ exports['default'] = function (method, url, data) {
 
         request.onload = function () {
             if (request.status >= 200 && request.status < 300) {
-                var data = request.response;
+                var data = request.responseText;
+                console.log(request);
+                console.log(data);
                 resolve(data.match(/^{/) ? JSON.parse(data) : data);
             } else {
                 reject(Error(request.statusText));

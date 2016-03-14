@@ -1,6 +1,7 @@
 var moment = require('moment');
 var markdown = require("markdown").markdown;
 var xhr = require('./plugins/promiseXHR');
+var Promise = require('./plugins/promise');
 var util = require('./util');
 var config = require('../../config'),
     http_url = config.http_url;

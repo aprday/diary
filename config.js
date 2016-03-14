@@ -12,5 +12,5 @@ module.exports = {
   title: 'My Tech Diary',
   lang: 'en',
   http_url: 'http://www.songxuemeng.com/my-diary/'
-  //http_url: 'http://localhost:8000/diary/'
+  //http_url: 'http://172.20.162.187:8000/diary/'
 }
