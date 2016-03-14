@@ -42,8 +42,8 @@ var app ={
           diary = self.diary;
       }
       var task = calendar.loadJson();
-      task.trunk.then(response => {
-          Promise.all(task.brunchs).then(response => {
+      task.trunk.then(function(response){
+          Promise.all(task.brunchs).then(function(response){
               console.log(response);
               var array =[], ele = [];
               for(var i = 0; ele = response[i]; i++){

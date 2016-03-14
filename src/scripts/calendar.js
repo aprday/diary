@@ -72,12 +72,12 @@ var config = require('../../config'),
                 path = http_url,
                 param = "diary.json";
             var trunk = xhr('GET', path + param)
-                .then(response => {
+                .then(function(response){
                     var diarys = response.data,
                         diary = {};
                     for (var i = 0; diary = diarys[i]; i++) {
                         param = diary.url;
-                        var task = xhr('GET', path + param).then(response => {
+                        var task = xhr('GET', path + param).then(function(response){
                             // success callback
                             return response.diary;
                         });

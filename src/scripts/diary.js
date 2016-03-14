@@ -18,7 +18,7 @@ var config = require('../../config'),
     var template = "<div class='diary'>"+
                     "<div class='nav'><button class='prev'><<</button><button class='next' >>></button></div>"+
                     "<div id='markdown'></div>"+
-                    "<div class='index'><a href='/'>Index</a></div>"+
+                    "<div class='index'><a href='/diary/'>Index</a></div>"+
                     "<div id='duoshuo'></div>"+
                     "</div>";
     var Diary = function (options) {
@@ -60,7 +60,7 @@ var config = require('../../config'),
                 task = {},
                 path = http_url;
             var task = xhr('GET', path + param)
-                .then(response => {
+                .then(function(response) {
                     var data = response;
                     self.markdown(data);
                 });
