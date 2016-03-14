@@ -44,21 +44,21 @@ var app ={
       var task = calendar.loadJson();
       task.trunk.then(function(response){
           Promise.all(task.brunchs).then(function(response){
-              console.log(response);
-              var array =[], ele = [];
-              for(var i = 0; ele = response[i]; i++){
-                  array = array.concat(ele);
+              console.log('now we have the response',response);
+              var array =[];
+              for(var i = 0; i < response.length; i++){
+                  console.log('what the array', response[i]);
+                  array = array.concat(response[i]=== undefined?[]:response[i]);
               }
-              console.log(array);
               self.dates = calendar.generateDate(array) || {};
-              console.log(self.dates);
+              console.log('get some dates',self.dates);
               self.route(calendar, diary, self.dates);
           });
       });
   },
   route :function(calendar,diary, dates){
     var url = location.hash;
-    console.log(self.dates);
+    console.log(dates);
     Route.init({
         'index': function () {
             console.log(index);

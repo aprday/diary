@@ -74,13 +74,14 @@ var config = require('../../config'),
                 param = "diary.json";
             var trunk = xhr('GET', path + param)
                 .then(function(response){
-                    var diarys = response.data,
-                        diary = {};
-                    for (var i = 0; diary = diarys[i]; i++) {
-                        param = diary.url;
+                    var array = response.data,
+                        part = {};
+                    for (var i = 0; part = array[i]; i++) {
+                        param = part.url;
                         var task = xhr('GET', path + param).then(function(response){
                             // success callback
-                            return response.diary;
+                            console.log(response.diary);
+                            return response.diary === undefined?[]:response.diary;
                         });
                         brunchs.push(task);
                     };
