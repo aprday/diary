@@ -5,23 +5,29 @@ var Promise = require('./plugins/promise');
 var util = require('./util');
 var config = require('../../config'),
     http_url = config.http_url;
-
+var duoshuo = require('./duoshuo.js');
 
 (function () {
     'use strict';
     var defaults = {
-        element: document.getElementById('container'),
-        title: document.getElementById('title'),
-        content: null,
-        name: 'markdown',
-        id: '0',
+        element : document.getElementById('container'),
+        title   : document.getElementById('title'),
+        date    : {},
+        content : null,
+        name    : 'markdown',
+        id      : '0',
     };
     var template = "<div class='diary'>"+
                     "<div class='nav'><button class='prev'><<</button><button class='next' >>></button></div>"+
                     "<div id='markdown'></div>"+
-                    "<div class='index'><a href='/diary/'>Index</a></div>"+
+                    "<div class='index'><a href='#'>Index</a></div>"+
                     "<div id='duoshuo'></div>"+
                     "</div>";
+    var dsThread = function(key, title, url){
+        var thread = '<div data-thread-key="'+key+'" data-title="'+title+'" data-url="'+url+'" class="ds-thread"></div>';
+        console.log(thread);
+        return thread;
+    };
     var Diary = function (options) {
         var self = this;
         self.data = defaults;
@@ -44,6 +50,9 @@ var config = require('../../config'),
                 //get markdown to html
                 self.loadMarkdown(value, self.markdown);
                 self.bindEvent(date, dates);
+                //初始化多说评论框
+                options.element.querySelector('#duoshuo').innerHTML = dsThread(date, date, window.location.href);
+                duoshuo.start();
             };
 
         },
@@ -52,8 +61,10 @@ var config = require('../../config'),
                 options = self.data;
             var prev = options.element.querySelector('.prev');
             var next = options.element.querySelector('.next');
+            var index = options.element.querySelector('.index');
             util.delegateEvent('click', prev, self.getPrev, {date:date, dates:dates});
             util.delegateEvent('click', next, self.getNext, {date:date, dates:dates});
+            util.delegateEvent('click', index, self.getIndex, null);
 
         },
         loadMarkdown: function (param) {
@@ -66,6 +77,9 @@ var config = require('../../config'),
                     self.markdown(data);
                 });
             return task;
+        },
+        getIndex:function(){
+            window.location.hash = '/';
         },
 
         //得到前一个md
@@ -100,7 +114,6 @@ var config = require('../../config'),
                 options = self.data;
             //this.element.innerHTML = markdown.toHTML(highlightCode(data));
             options.element.querySelector('#markdown').innerHTML = markdown.toHTML(data);
-            options.element.querySelector('#duoshuo').innerHTML = '<div data-thread-key="'+options.id+'" data-title="'+options.name+'" data-url="'+window.location.href+'" class="ds-thread"></div>';
         }
     }
     module.exports = Diary;

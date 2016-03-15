@@ -28,11 +28,11 @@ var config = require('../../config'),
     Calendar.prototype = {
         layout: function (dates) {
             var self = this,
-                data = self.data,
+                options = self.data,
                 template = self.template;
             console.log(dates);
-            data.element.innerHTML = template;
-            data.title.innerHTML = 'My Tech Diary';
+            options.element.innerHTML = template;
+            options.title.innerHTML = 'My Tech Diary';
             self.render(dates);
         },
         render: function (dates) {
