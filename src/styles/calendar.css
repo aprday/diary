@@ -65,8 +65,30 @@ button.is-disabled:hover {
   background: var(--lightBackground);
 }
 
-.pika-label select {
+/*.pika-label select {
   display: none;
+}*/
+.pika-label select {
+  /*display: none;*/
+  cursor: pointer;
+    position: absolute;
+    z-index: 9998;
+    margin: 0;
+    left: 0;
+    top: 5px;
+    opacity: 0;
+}
+.pika-label {
+    position: relative;
+    z-index: 9999;
+    overflow: hidden;
+    margin: 0;
+    padding: 5px 0;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: bold;
+    background-color: #fff;
+    _display:inline;
 }
 
 .pika-table {

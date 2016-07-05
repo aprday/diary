@@ -44,7 +44,9 @@ var config = require('../../config'),
                         var time = moment(date);
                         //window.location.href += time.format('/YYYY/MM/YYYY-MM-DD') + '.html';
                         // a bug of pikaday whose fix is still not released
-                        window.location.hash = time.format('/YYYY-MM-DD');
+                        if (Object.getOwnPropertyDescriptor(dates, time.format('YYYY-MM-DD')) != undefined) {
+                            window.location.hash = time.format('/YYYY-MM-DD');
+                        };
                     },
                     i18n: {
                         previousMonth: '&lt;&lt;',
