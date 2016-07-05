@@ -1516,8 +1516,8 @@ webpackJsonp([0],[
 	  ga_id: '',  // Optional: Universal Google Analytics ID
 	  title: 'My Tech Diary',
 	  lang: 'en',
-	  //http_url: 'http://www.songxuemeng.com/my-diary/'
-	  http_url: 'http://localhost:8000/diary/'
+	  http_url: 'http://www.songxuemeng.com/my-diary/'
+	  //http_url: 'http://localhost:8000/diary/'
 	}
 
 
