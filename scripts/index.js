@@ -160,10 +160,11 @@ webpackJsonp([0],[
 	                        weekdays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
 	                        weekdaysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 	                    },
-	                    minDate: options.firstDate,
-	                    maxDate: options.lastDate
+	                    minDate: new Date(options.firstDate),
+	                    maxDate: new Date(options.lastDate),
+	                    defaultDate: new Date(options.lastDate),
 	                });
-	
+	            console.log('options',options);
 	            options.element.appendChild(picker.el);
 	
 	            var buttons = picker.el.getElementsByTagName('button');
@@ -197,7 +198,11 @@ webpackJsonp([0],[
 	        },
 	        generateDate: function (array) {
 	            var self = this,
+	                options = self.data,
 	                dates = {};
+	            //get the last day
+	            options.firstDate = array[0].date;
+	            options.lastDate = array.reverse()[0].date;
 	            // put date in map
 	            for (var index = 0; index < array.length; index++) {
 	                var time = array[index].date,
